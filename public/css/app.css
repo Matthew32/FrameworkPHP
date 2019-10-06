@@ -1,0 +1,24 @@
+.container {
+    display: flex; /* or inline-flex */
+
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid deepskyblue;
+    padding: 10px;
+}
+
+input {
+    display:inline-block;
+    margin: auto;
+    width: 80%;
+    height:50px;
+}
+
+button {
+    height: 50px;
+    margin: auto;
+}
+
