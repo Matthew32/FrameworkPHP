@@ -10,15 +10,12 @@
     padding: 10px;
 }
 
-input {
-    display:inline-block;
-    margin: auto;
-    width: 80%;
+input {    margin: auto;
+    width: 50%;
     height:50px;
 }
 
 button {
     height: 50px;
-    margin: auto;
 }
 

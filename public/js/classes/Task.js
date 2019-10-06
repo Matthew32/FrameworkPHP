@@ -6,19 +6,23 @@ class Task {
             if (this.readyState == 4 && this.status == 200) {
                 let formatter = new Formatter();
                 var data = JSON.parse(this.responseText);
-                let content = "";
-                let totalHours = 0;
-                for (let i = 0; i < data.content.length; i++) {
-                    content += `<tr>
+                if (data.status === 200) {
+                    let content = "";
+                    let totalHours = 0;
+                    for (let i = 0; i < data.content.length; i++) {
+                        content += `<tr>
                            <td colspan="2">` + data.content[i].text + `</td>
                            <td>` + formatter.getHoursAndMinutesFromMinutes(data.content[i].duration) + `</td></tr>`
 
-                    totalHours += parseInt(data.content[i].duration);
-                }
-                content += '<td colspan="2"><b>Total '+d.getDate()+'-'+(d.getMonth()+1)+'-'+d.getUTCFullYear()+'</b></td>';
-                content += '<td ><b>'+formatter.getHoursAndMinutesFromMinutes(totalHours)+'</b></td>';
+                        totalHours += parseInt(data.content[i].duration);
+                    }
+                    content += '<td colspan="2"><b>Total ' + d.getDate() + '-' + (d.getMonth() + 1) + '-' + d.getUTCFullYear() + '</b></td>';
+                    content += '<td ><b>' + formatter.getHoursAndMinutesFromMinutes(totalHours) + '</b></td>';
 
-                document.getElementById(element).innerHTML = content;
+                    document.getElementById(element).innerHTML = content;
+                }else{
+                    document.getElementById(element).innerHTML = "Not data found";
+                }
 
             }
         };
