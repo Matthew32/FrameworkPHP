@@ -1,37 +1,32 @@
 class Timer {
-    seconds;
-    minutes;
-    hours;
-    t;
 
-    constructor() {
-        this.seconds = 0;
-        this.minutes = 0;
-        this.hours = 0;
+    element;
+
+    constructor(element) {
+        this.element = element;
         this.t = 0;
-
-
     }
 
-    timer = function (element) {
-        timer.t = setTimeout(this.add, 1000, [element]);
+    timer(seconds, minutes, hours) {
+        this.element.textContent = (
+                hours ? (hours > 9 ? hours : "0" + hours) : "00")
+            + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00")
+            + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+        this.t = setTimeout(this.add, 1000, this, seconds, minutes, hours);
     };
 
 
-    add = function (element) {
-
-        timer.seconds++;
-        if (timer.seconds >= 60) {
-            timer.seconds = 0;
-            timer.minutes++;
-            if (timer.minutes >= 60) {
-                timer.minutes = 0;
-                timer.hours++;
+    add(instance, seconds, minutes, hours) {
+        seconds++;
+        if (seconds >= 60) {
+            seconds = 0;
+            minutes++;
+            if (minutes >= 60) {
+                minutes = 0;
+                hours++;
             }
         }
-        timerTxt.textContent = (
-            timer.hours ? (timer.hours > 9 ? timer.hours : "0" + timer.hours) : "00") + ":" + (timer.minutes ? (timer.minutes > 9 ? timer.minutes : "0" + timer.minutes) : "00") + ":" + (timer.seconds > 9 ? timer.seconds : "0" + timer.seconds);
-        timer.timer(element);
-
+        instance.timer(seconds,minutes,hours);
     };
 }

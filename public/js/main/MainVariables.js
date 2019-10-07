@@ -4,4 +4,4 @@ let stop = document.getElementById("stop"),
     taskTxt = document.getElementById("task"),
     error = document.getElementById("error"),
     timerTxt = document.getElementById("timer"),
-    timer = new Timer();
+    timer = new Timer(timerTxt);

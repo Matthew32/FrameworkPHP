@@ -4,7 +4,7 @@ function postToServerTask() {
     let resources = new Resources();
     task.post('/api/tasks?user_id=' + resources.getCookie("tasktoc"),
         'text=' + document.getElementById("text").value + '&'
-        + 'duration=' + formatter.getMinutes(timer.hours, timer.minutes), "error");
+        + 'duration=' + formatter.getMinutes(timer.hours, timer.minutes), "error", text);
 
 }
 
@@ -20,7 +20,7 @@ function startButton() {
         taskTxt.innerHTML = "Task On Going:" + task;
         error.innerHTML = "";
         timerTxt.textContent = "00:00:00";
-        timer.timer(timerTxt)
+        timer.timer(0, 0, 0)
     } else {
         error.innerHTML = "Please fill the task";
 

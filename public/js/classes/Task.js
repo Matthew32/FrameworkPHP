@@ -30,12 +30,12 @@ class Task {
         xhttp.send();
     };
 
-    post = function post(path, params, element, method = 'post') {
+    post = function post(path, params, element,elementText, method = 'post') {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var data = JSON.parse(this.responseText);
-                text.value = "";
+                elementText.value = "";
 
                 document.getElementById(element).innerHTML = "saved";
             }
