@@ -28,7 +28,7 @@ class TaskDAO extends DAO
     {
         $result = null;
         $gsent = $this->Database->getConnection()->prepare("SELECT id,text,duration,id_user as user,date_created,date_updated FROM tasks where id_user = ? and date_created >= ? and ? <= date_created");
-        $gsent->execute([$task->user, $date,$date]);
+        $gsent->execute([$task->user, $date, $date]);
 
         return $this->format($gsent->fetchAll(\PDO::FETCH_ASSOC));
 
@@ -63,7 +63,7 @@ class TaskDAO extends DAO
         try {
             $savedTask = $this->Database->getConnection()->prepare("SELECT id,duration  FROM tasks where text = ? and date_created >= ? and ? <= date_created and id_user = ?");
 
-            $savedTask->execute([$task->text, date("Y-m-d") . "00:00:00", date("Y-m-d") . "23:59:00", $task->user]);
+            $savedTask->execute([trim($task->text), date("Y-m-d") . "00:00:00", date("Y-m-d") . "23:59:00", $task->user]);
             $idSavedTask = $savedTask->fetch(\PDO::FETCH_ASSOC);
 
             if ($idSavedTask) {
