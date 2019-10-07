@@ -61,11 +61,12 @@ class TaskDAO extends DAO
     {
         //is saved already
         try {
-            $savedTask = $this->Database->getConnection()->prepare("SELECT id,duration  FROM tasks where text like ? and date_created >= ? and ? <= date_created and id_user = ?");
+            $savedTask = $this->Database->getConnection()->prepare("SELECT id,duration  FROM tasks where text = ? and date_created >= ? and ? <= date_created and id_user = ?");
 
             $savedTask->execute([trim($task->text), date("Y-m-d") . "00:00:00", date("Y-m-d") . "23:59:00", $task->user]);
+            var_dump($savedTask);
+
             $idSavedTask = $savedTask->fetch(\PDO::FETCH_ASSOC);
-            var_dump($idSavedTask);
             die();
             if ($idSavedTask) {
                 //update
